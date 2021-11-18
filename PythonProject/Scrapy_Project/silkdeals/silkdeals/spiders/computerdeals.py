@@ -12,7 +12,7 @@ class ComputerdealsSpider(scrapy.Spider):
         yield SeleniumRequest(
             url='https://slickdeals.net/computer-deals/',
             wait_time=3,
-            screenshot=True,
+            #screenshot=True,
             callback=self.parse
 
         )

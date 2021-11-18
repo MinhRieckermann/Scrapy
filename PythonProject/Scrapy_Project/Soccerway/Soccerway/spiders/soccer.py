@@ -12,4 +12,9 @@ class SoccerSpider(scrapy.Spider):
 
     def parse(self, response):
         teama =response.xpath("//td[@class='team team-a ']/a/text()").getall()
-        print(teama)
+        
+
+        yield {
+            'team':teama
+        }
+                

@@ -1,10 +1,20 @@
 import scrapy
+from scrapy.crawler import CrawlerProcess
+from scrapy.utils.project import get_project_settings
 
 
 class SpecialOffersSpider(scrapy.Spider):
     name = 'special_offers'
     allowed_domains = ['web.archive.org']
     start_urls = ['https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html']
+
+    custom_settings = {
+        'FEEDS' : {
+            'Quotes.csv':{
+                'format':'csv'
+            }
+        }
+    }
     def start_requests(self):
         yield scrapy.Request(url='https://web.archive.org/web/20190225123327/https://www.tinydeal.com/specials.html',callback=self.parse,headers={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
@@ -23,3 +33,6 @@ class SpecialOffersSpider(scrapy.Spider):
             yield scrapy.Request(url=next_page,callback=self.parse,headers={
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.77 Safari/537.36'
             })
+process= CrawlerProcess()
+process.crawl(SpecialOffersSpider)
+process.start()
