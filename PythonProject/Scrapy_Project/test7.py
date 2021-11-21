@@ -129,8 +129,32 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/netherlands/eredivisie/37')
+driver.get('https://www.sofascore.com/tournament/football/japan/jleague/196')
 results = []
+season_selector='//div[contains(@class,"styles__SeasonSelect")]/div[contains(@class,"styles__MenuWrapper")]/button'
+
+season_list=WebDriverWait(driver, 4000).until(
+                        EC.presence_of_element_located((By.XPATH,season_selector))
+                        )
+season_list.click()
+
+season_selected=WebDriverWait(driver, 4000).until(
+                        EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"styles__SeasonSelect")]/div[contains(@class,"styles__MenuWrapper")]/ul/div//div/li[2]'))
+                        )
+season_selected.click()
+
+data_url=WebDriverWait(driver, 1000).until(
+                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"styles__EventListContent")]/a' ))
+                       )
+hometeam=WebDriverWait(driver, 100).until(
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"styles__EventListContent")]/a/div/div[contains(@class,"EventCellstyles__EventCell")]/div[3]/div[1]'))
+                                    )
+awayteam=WebDriverWait(driver, 100).until(
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"styles__EventListContent")]/a/div/div[contains(@class,"EventCellstyles__EventCell")]/div[3]/div[2]'))
+                                    )
+time_match=WebDriverWait(driver, 100).until(
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"styles__EventListContent")]/a/div/div/div[contains(@class,"EventCellstyles__Status")]/div[1]'))
+                                    )
 tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 
 by_Round=WebDriverWait(driver, 4000).until(
@@ -286,7 +310,7 @@ for event in results:
 
 print(results)
 
-with open('football_Netherlands_data.csv', 'w', newline='', encoding='utf-8') as f:
+with open('football_Jleague_data.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','api_detail_url'])
