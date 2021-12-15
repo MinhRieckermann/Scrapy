@@ -310,7 +310,7 @@ for event in results:
 
 print(results)
 
-with open('football_Jleague_data.csv', 'w', newline='', encoding='utf-8') as f:
+with open('football_Jleague20192020_data.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','api_detail_url'])

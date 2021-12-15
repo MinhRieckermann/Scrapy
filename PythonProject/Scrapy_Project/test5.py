@@ -20,6 +20,7 @@ def h2hevent(url,headers,tournament):
     raw_data=json.loads(req.content)
         
     tournament=tournament
+    
     country=''
     roundInfo=''
     Hometeam=''
@@ -129,7 +130,7 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/netherlands/eredivisie/37')
+driver.get('https://www.sofascore.com/tournament/football/turkey/super-lig/52')
 results = []
 tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 
@@ -157,7 +158,7 @@ time_match=WebDriverWait(driver, 100).until(
                                     EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"styles__EventListContent")]/a/div/div/div[contains(@class,"EventCellstyles__Status")]/div[1]'))
                                     )
 driver.implicitly_wait(60)
-body=driver.page_source
+body=(driver.page_source).encode('utf-8')
 
 resp=Selector(text=body)
 
@@ -286,7 +287,7 @@ for event in results:
 
 print(results)
 
-with open('football_Netherlands_data.csv', 'w', newline='', encoding='utf-8') as f:
+with open('football_Turkey_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','api_detail_url'])
