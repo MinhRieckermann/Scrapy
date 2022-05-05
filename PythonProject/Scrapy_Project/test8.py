@@ -32,7 +32,7 @@ def h2hevent(url,headers,tournament):
     match_id=''
 
     for i in range(len(raw_data['events'])):
-        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Premier'):
+        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('K-League'):
             # tournament=raw_data['events'][i]['tournament']['name']
             # country=raw_data['events'][i]['tournament']['category']['name']
             # roundInfo=raw_data['events'][i]['roundInfo']['round']
@@ -47,7 +47,7 @@ def h2hevent(url,headers,tournament):
     HTResult=''
     DetailScore=''
 
-    api_detail_url='https://www.sofascore.com/api/v1/event/{0}/incidents'#https://web.archive.org/web/20211023110834/
+    api_detail_url='https://api.sofascore.com/api/v1/event/{0}/incidents'#https://web.archive.org/web/20211023110834/
     detail_url=api_detail_url.format(match_id)
     
     res=incidentevent(detail_url,headers)    
@@ -134,7 +134,7 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/russia/premier-liga/203')
+driver.get('https://www.sofascore.com/tournament/football/south-korea/k-league-1/410')
 results = []
 tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 
@@ -274,7 +274,7 @@ driver.close()
 #     writer.writerows(results)
 #--------------------------------
 headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/92.0.4515.131 Safari/537.36'}
-api_event_url='https://www.sofascore.com/api/v1/event/{0}/h2h/events'
+api_event_url='https://api.sofascore.com/api/v1/event/{0}/h2h/events'
 for event in results:
     event["api_event_url"]=api_event_url.format(event.get("code"))
 
@@ -291,7 +291,7 @@ for event in results:
 
 print(results)
 
-with open('football_Russia_data.csv', 'w', newline='', encoding='utf-8') as f:
+with open('football_KLeague_data.csv', 'w', newline='', encoding='utf-8') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','api_detail_url'])
