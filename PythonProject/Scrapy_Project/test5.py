@@ -26,6 +26,7 @@ def h2hevent(url,headers,tournament):
     Hometeam=''
     Awayteam=''
     match_id=''
+    tournamentapi=''
 
     for i in range(len(raw_data['events'])):
         if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name']==tournament:
@@ -35,6 +36,7 @@ def h2hevent(url,headers,tournament):
             # Hometeam=raw_data['events'][i]['homeTeam']['name']
             # Awayteam=raw_data['events'][i]['awayTeam']['name']
             match_id=raw_data['events'][i]['id']
+            tournamentapi=raw_data['events'][i]['tournament']['name']
             break
 
     TimeAwayScrore=''
@@ -56,6 +58,7 @@ def h2hevent(url,headers,tournament):
             'TimeHomeScrore':res.get("TimeHomeScrore"),
             'DetailScore':res.get("DetailScore"),
             'match_id':match_id,
+            'tournament_nameapi':tournamentapi,
             'api_detail_url':detail_url
         }
     else:
@@ -66,6 +69,7 @@ def h2hevent(url,headers,tournament):
             'TimeHomeScrore':'link error',
             'DetailScore':'link error',
             'match_id':match_id,
+            'tournament_nameapi':tournamentapi,
             'api_detail_url':detail_url
         }
 
@@ -130,11 +134,11 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/france/ligue-1/34')
+driver.get('https://www.sofascore.com/tournament/football/colombia/primera-a-clausura/11536')
 results = []
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"sc-5d19fd97-0")]/a[text()="By Round"]'
-tab_selector='//div[contains(@class,"lQvzd")]/div/div[text()="By Round"]'
+tab_selector='//div[contains(@class,"sc-hLBbgP Hbif")]/div[text()="By Round"]'
 by_Round=WebDriverWait(driver, 4000).until(
                         EC.presence_of_element_located((By.XPATH,tab_selector))
                         )
@@ -151,7 +155,7 @@ print(by_Round.text)
 #                        EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a' ))
 #                        )
 data_url=WebDriverWait(driver, 1000).until(
-                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a' ))
+                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a' ))
                        )
 
 
@@ -168,16 +172,16 @@ data_url=WebDriverWait(driver, 1000).until(
 #                                     EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div/div[contains(@class,"sc-d47f388d-2")]/div[2]'))
 #                                     )  
 hometeam=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div/div/div[1]'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div[contains(@class,"fRddxb")]/div[contains(@class,"sc-hLBbgP hqrTxP")]/div[1]'))
                                     )
 awayteam=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div/div/div[2]'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div[contains(@class,"fRddxb")]/div[contains(@class,"sc-hLBbgP hqrTxP")]/div[2]'))
                                     )
 time_match=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/span'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/span'))
                                     )
 status_match=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/div/span[1]/span'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/div/span[1]/span'))
                                     )                                    
 driver.implicitly_wait(60)
 body=(driver.page_source).encode('utf-8')
@@ -186,11 +190,11 @@ resp=Selector(text=body)
 
 
 #country=resp.xpath("//span[contains(@class,'sc-6458077b-9')]/text()[2]").get()
-country=resp.xpath("//div[contains(@class,'hVRDpO')]/span/text()[2]").get()
+country=resp.xpath("//div[contains(@class,'jyUppZ OcoZk')]/span/text()[2]").get()
 tournament=resp.xpath("//h2/text()").get()
 
 #year=resp.xpath("//button[contains(@class,'sc-40903c5f-4')]/span/text()").get()
-year=resp.xpath("//div[contains(@class,'bidxBK')]/button[contains(@class,'gDuGmB')]/div/span/text()").get()
+year=resp.xpath("//div[contains(@class,'sc-hBxehG femhBx')]/button[contains(@class,'koNzSx')]/div/span/text()").get()
 
 #round_match=resp.xpath("//div[contains(@class,'list-wrapper')]/div[contains(@class,'sc-cd4cfbdc-0')]/div[2]/div/div/button/span/text()").get()
 round_match=resp.xpath("//div[contains(@class,'list-wrapper')]/div[1]/div/button/div/span/text()").get()
@@ -200,34 +204,34 @@ for i in range(len(data_url)):
     #                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a' ))
     #                    )
     data_url=WebDriverWait(driver, 1000).until(
-                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a' ))
+                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a' ))
                        )
     
     # hometeam=WebDriverWait(driver, 100).until(
     #                                 EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div[contains(@class,"sc-cd4cfbdc-0")]/div[3]/div[1]'))
     #                                 )
     hometeam=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div/div/div[1]'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div[contains(@class,"fRddxb")]/div[contains(@class,"sc-hLBbgP hqrTxP")]/div[1]'))
                                     )
     
     # awayteam=WebDriverWait(driver, 100).until(
     #                                 EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div[contains(@class,"sc-cd4cfbdc-0")]/div[3]/div[2]'))
     #                                 )
     awayteam=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div/div/div[2]'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div[contains(@class,"fRddxb")]/div[contains(@class,"sc-hLBbgP hqrTxP")]/div[2]'))
                                     )
     
     # time_match=WebDriverWait(driver, 100).until(
     #                                 EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div/div[contains(@class,"sc-d47f388d-2")]/div[1]'))
     #                                 )
     time_match=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/span'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/span'))
                                     )
     # status_match=WebDriverWait(driver, 100).until(
     #                                 EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div/div[contains(@class,"sc-d47f388d-2")]/div[2]'))
     #                                 )
     status_match=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/div/span[1]/span'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/div/span[1]/span'))
                                     )
     
     link_code=urllib.parse.urlparse(data_url[i].get_attribute('href'))
@@ -255,7 +259,7 @@ driver.implicitly_wait(400)
 #                        EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-cd4cfbdc-0")]/div[1]/div' ))
 #                        )
 next_url=WebDriverWait(driver, 400).until(
-                       EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[2]/div[contains(@class,"dZnopP")]/button/span' ))
+                       EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[2]/div[contains(@class,"bKiotZ")]/button/span' ))
                        )
 print (next_url.text)
 
@@ -266,7 +270,7 @@ print (next_url.text)
 #                        EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a' ))
 #                        )
 data=WebDriverWait(driver, 1000).until(
-                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a' ))
+                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a' ))
                        )
 while next_url:
     try:
@@ -277,34 +281,34 @@ while next_url:
         #                EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a' ))
         #                )
         data=WebDriverWait(driver, 1000).until(
-                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a' ))
+                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a' ))
                        )
 
         # hometeam=WebDriverWait(driver, 100).until(
         #                             EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div[contains(@class,"sc-cd4cfbdc-0")]/div[3]/div[1]'))
         #                             )
         hometeam=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div/div/div[1]'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div[contains(@class,"fRddxb")]/div[contains(@class,"sc-hLBbgP hqrTxP")]/div[1]'))
                                     )
 
         # awayteam=WebDriverWait(driver, 100).until(
         #                             EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div[contains(@class,"sc-cd4cfbdc-0")]/div[3]/div[2]'))
         #                             )
         awayteam=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div/div/div[2]'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[4]/div[contains(@class,"fRddxb")]/div[contains(@class,"sc-hLBbgP hqrTxP")]/div[2]'))
                                     )
 
         # time_match=WebDriverWait(driver, 100).until(
         #                             EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div/div[contains(@class,"sc-d47f388d-2")]/div[1]'))
         #                             )
         time_match=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/span'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/span'))
                                     )
         # status_match=WebDriverWait(driver, 100).until(
         #                             EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a/div/div/div[contains(@class,"sc-d47f388d-2")]/div[2]'))
         #                             )
         status_match=WebDriverWait(driver, 100).until(
-                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/div/span[1]/span'))
+                                    EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a/div/div[contains(@class,"sc-63b296ca-0")]/div[2]/div/span[1]/span'))
                                     )
 
         # round_match=WebDriverWait(driver, 10).until(
@@ -320,7 +324,7 @@ while next_url:
             #            EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-8e930919-2")]/a' ))
             #            )
             data=WebDriverWait(driver, 1000).until(
-                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"gtOvrf")]/a' ))
+                       EC.presence_of_all_elements_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"hBOvkB")]/a' ))
                        )
             link_code=urllib.parse.urlparse(data[i].get_attribute('href'))
             path=link_code[2].rpartition('/')
@@ -373,13 +377,14 @@ for event in results:
     event["TimeHomeScrore"]=rep.get("TimeHomeScrore"),
     event["DetailScore"]=rep.get("DetailScore"),
     event["match_id"]=rep.get("match_id"),
+    event["tournament_nameapi"]=rep.get("tournament_nameapi"),
     event["api_detail_url"]=rep.get("api_detail_url"),
 
 print(results)
 
-with open('football_France_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
+with open('football_Colombia_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
-                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','api_detail_url'])
+                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])
     writer.writeheader()
     writer.writerows(results)
