@@ -29,7 +29,7 @@ def h2hevent(url,headers,tournament):
     tournamentapi=''
 
     for i in range(len(raw_data['events'])):
-        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Premier League'):
+        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('A-League'):
             # tournament=raw_data['events'][i]['tournament']['name']
             # country=raw_data['events'][i]['tournament']['category']['name']
             # roundInfo=raw_data['events'][i]['roundInfo']['round']
@@ -134,7 +134,7 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/russia/premier-liga/203')
+driver.get('https://www.sofascore.com/tournament/football/australia/a-league-men/136')
 results = []
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"sc-5d19fd97-0")]/a[text()="By Round"]'
@@ -382,7 +382,7 @@ for event in results:
 
 print(results)
 
-with open('football_Russia_Premier_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
+with open('football_Australia_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])
