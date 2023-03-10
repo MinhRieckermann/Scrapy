@@ -134,7 +134,7 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/mexico/liga-mx-clausura/11620')
+driver.get('https://www.sofascore.com/tournament/football/italy/serie-a/23')
 results = []
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"sc-5d19fd97-0")]/a[text()="By Round"]'
@@ -382,7 +382,7 @@ for event in results:
 
 print(results)
 
-with open('football_Mexico_Clausura_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
+with open('football_Italy_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])

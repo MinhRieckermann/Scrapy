@@ -1,0 +1,8 @@
+obj
+bin
+appsettings.json
+*.db
+appsettings.Development.json
+*.csv
+1_datasurvey
+*.xlsx
