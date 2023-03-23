@@ -6,3 +6,4 @@ appsettings.Development.json
 *.csv
 1_datasurvey
 *.xlsx
+*.pdf
