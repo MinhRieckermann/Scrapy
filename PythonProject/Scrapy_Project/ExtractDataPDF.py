@@ -97,14 +97,17 @@ def word_page_count(filename :str,search:str):
 file_path = "7K.pdf"
 
 # extract all tables from the PDF file
-tables = camelot.read_pdf(file_path, pages="all")
+tables = camelot.read_pdf(file_path, pages="all",flavor='stream')
+tables
+tables[0].df.drop([0,1,2,3],axis=0,inplace=True)
+print(type(tables[0].df.drop([0,1,2,3],axis=0,inplace=True)))
 
-# create a Pandas Excel writer object
-writer = pd.ExcelWriter("output.xlsx", engine="xlsxwriter")
+# # create a Pandas Excel writer object
+# writer = pd.ExcelWriter("output.xlsx", engine="xlsxwriter")
 
-for i, table in enumerate(tables):
-    # write each table to a separate sheet in the Excel workbook
-    table.df.to_excel(writer, sheet_name=f"Table {i+1}", index=False)
+# for i, table in enumerate(tables):
+#     # write each table to a separate sheet in the Excel workbook
+#     table.df.to_excel(writer, sheet_name=f"Table {i+1}", index=False)
 
-# save the Excel workbook
-writer.save()
+# # save the Excel workbook
+# writer.save()
