@@ -29,7 +29,7 @@ def h2hevent(url,headers,tournament):
     tournamentapi=''
 
     for i in range(len(raw_data['events'])):
-        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('K-League 1'):
+        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Brasileiro S\u00e9rie B'):
             # tournament=raw_data['events'][i]['tournament']['name']
             # country=raw_data['events'][i]['tournament']['category']['name']
             # roundInfo=raw_data['events'][i]['roundInfo']['round']
@@ -134,7 +134,7 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/south-korea/k-league-1/410')
+driver.get('https://www.sofascore.com/tournament/football/brazil/brasileiro-serie-b/390')
 results = []
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"Tabs__Header")]/a[text()="By Round"]'
 #tab_selector='//div[@class="u-mV12"]/div/div[contains(@class,"sc-5d19fd97-0")]/a[text()="By Round"]'
@@ -190,11 +190,11 @@ resp=Selector(text=body)
 
 
 #country=resp.xpath("//span[contains(@class,'sc-6458077b-9')]/text()[2]").get()
-country=resp.xpath("//div[contains(@class,'jyUppZ OcoZk')]/span/text()[2]").get()
-tournament=resp.xpath("//h2/text()").get()
+country=resp.xpath("//div[contains(@class,'sc-hLBbgP hZKURa')]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div//span/text()[2]").get()
+tournament=resp.xpath("//div[contains(@class,'sc-hLBbgP hZKURa')]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/h2/text()").get()
 
 #year=resp.xpath("//button[contains(@class,'sc-40903c5f-4')]/span/text()").get()
-year=resp.xpath("//div[contains(@class,'sc-fnGiBr kdHYZX')]/button/div/span/text()").get()
+year=resp.xpath("//div[contains(@class,'sc-hLBbgP hZKURa')]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div/div[contains(@class,'sc-fnGiBr kdHYZX')]/button/div/span/text()").get()
 
 #round_match=resp.xpath("//div[contains(@class,'list-wrapper')]/div[contains(@class,'sc-cd4cfbdc-0')]/div[2]/div/div/button/span/text()").get()
 round_match=resp.xpath("//div[contains(@class,'list-wrapper')]/div[1]/div/button/div/span/text()").get()
@@ -259,7 +259,7 @@ driver.implicitly_wait(400)
 #                        EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[contains(@class,"sc-cd4cfbdc-0")]/div[1]/div' ))
 #                        )
 next_url=WebDriverWait(driver, 400).until(
-                       EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[2]/div[contains(@class,"bKiotZ")]/button/span' ))
+                       EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[1]/div[contains(@class,"bKiotZ")]/button/span' ))
                        )
 print (next_url.text)
 
@@ -382,7 +382,7 @@ for event in results:
 
 print(results)
 
-with open('football_KLeague_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
+with open('football_Brazil_SeriesB_data.csv', 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
                                         'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])
