@@ -134,10 +134,10 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/england/premier-league/17#52186')
+driver.get('https://www.sofascore.com/tournament/football/denmark/superliga/39#52172')
 results = []
 
-output_file='football_switzerland2023_data.csv'
+output_file='football_denmark2023_data.csv'
 
 X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"fFmCDf")]/div[contains(@title,"live score")]/div[1]'
 X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"fFmCDf")]/div[contains(@title,"live score")]/div[2]'

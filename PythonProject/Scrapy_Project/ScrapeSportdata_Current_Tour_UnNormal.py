@@ -29,7 +29,7 @@ def h2hevent(url,headers,tournament):
     tournamentapi=''
 
     for i in range(len(raw_data['events'])):
-        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('K League 1'):
+        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Brasileir\u00e3o S\u00e9rie B'):
             # tournament=raw_data['events'][i]['tournament']['name']
             # country=raw_data['events'][i]['tournament']['category']['name']
             # roundInfo=raw_data['events'][i]['roundInfo']['round']
@@ -134,10 +134,10 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/south-korea/k-league-1/410#48379')
+driver.get('https://www.sofascore.com/tournament/football/brazil/brasileirao-serie-b/390#49058')
 results = []
 
-output_file='football_KLeague_data.csv'
+output_file='football_Brazil_SeriesB_data.csv'
 
 X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"fFmCDf")]/div[contains(@title,"live score")]/div[1]'
 X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"fFmCDf")]/div[contains(@title,"live score")]/div[2]'
