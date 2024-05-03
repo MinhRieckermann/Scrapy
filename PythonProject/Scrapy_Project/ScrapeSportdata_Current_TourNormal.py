@@ -11,6 +11,7 @@ import csv
 from scrapy.selector import Selector
 import scrapy
 import urllib.parse
+import urllib.request
 import requests
 import json
 
@@ -59,7 +60,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':res.get("DetailScore"),
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':res.get("HomeScore"),
+            'awayscore':res.get("AwayScore")
         }
     else:
         data_result={
@@ -70,26 +73,33 @@ def h2hevent(url,headers,tournament):
             'DetailScore':'link error',
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':'link error',
+            'awayscore':'link error'
         }
 
 
     return data_result
     
 def incidentevent(url,headers):
-    req = requests.get(url,headers=headers)
-    raw_data=json.loads(req.content)
+    req = urllib.request.Request(url,headers=headers)
+    data=urllib.request.urlopen(req).read().decode('utf-8')
+    raw_data=json.loads(data)
         
     TimeAwayScrore=''
     TimeHomeScrore=''
     FTResult=''
     HTResult=''
+    homescore=''
+    awayscore=''
     if "incidents" in raw_data:
 
         for dt in raw_data['incidents']:
             if dt['incidentType']=="period":
                 if dt['text']=="FT":
                         FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
+                        homescore=int(dt['homeScore'])
+                        awayscore=int(dt['awayScore'])
                 if dt['text']=="HT":
                         HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
             if dt['incidentType']=="goal":
@@ -113,7 +123,9 @@ def incidentevent(url,headers):
             'HTResult':HTResult,
             'TimeAwayScrore':TimeAwayScrore,
             'TimeHomeScrore':TimeHomeScrore,
-            'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore
+            'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore,
+            'HomeScore':homescore,
+            'AwayScore':awayscore
         }    
         
     
@@ -134,27 +146,28 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/denmark/superliga/39#52172')
+driver.get('https://www.sofascore.com/tournament/football/england/premier-league/17#id:52186')
 results = []
 
-output_file='football_denmark2023_data.csv'
+output_file='football_PremierLeague20232024data.csv'
 
-X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"fFmCDf")]/div[contains(@title,"live score")]/div[1]'
-X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"fFmCDf")]/div[contains(@title,"live score")]/div[2]'
+X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
+X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'
 
-X_Path_time_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/bdi'
-X_Path_status_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/div/span[1]/bdi'
-X_Path_country="//div[contains(@class,'sc-fqkvVR gwppKx')]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div//span/text()[2]"
-X_Path_tournament="//div[contains(@class,'sc-fqkvVR gwppKx')]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/h2/text()"
-X_Path_year="//div[contains(@class,'sc-fqkvVR gwppKx')]/div[1]/div[1]/div[1]/div[1]/div[2]/div[2]/div[1]/div[2]/div/div[contains(@class,'sc-feUZmu feoGOz')]/button/div/span/text()"
-X_Path_round_match="//div[contains(@class,'list-wrapper')]/div[1]/div/button/div/span/text()"
-X_Path_round_match_notext='//div[contains(@class,"list-wrapper")]/div[1]/div/button/div/span'
-X_Path_data_url='//div[contains(@class,"list-wrapper")]/div[contains(@class,"fChHZS")]/a'
-X_Path_next_url='//div[contains(@class,"list-wrapper")]/div[1]/div[contains(@class,"fVExXG")]/button/span'
+X_Path_time_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/bdi'
+X_Path_status_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/div/span[1]/bdi'
+X_Path_country="//div[contains(@class,'dqPXrj')]/div/div[2]/div[2]/div[1]/div[contains(@class,'jLRkRA')]/span/text()[2]"
+X_Path_tournament="//div[contains(@class,'dqPXrj')]/div/div[2]/div[2]/h2/text()"
+X_Path_year="//div[contains(@class,'dqPXrj')]/div/div[2]/div[2]/div[1]/div[2]/div/div/button/div/div/text()"
+X_Path_round_match="//div[contains(@class,'list-wrapper')]/div[1]/div/button/div/div/text()"
+X_Path_round_match_notext='//div[contains(@class,"list-wrapper")]/div[1]/div/button/div/div'
+X_Path_data_url='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a'
+X_Path_next_url='//div[contains(@class,"list-wrapper")]/div[1]/button[1]'
 
-X_Path_season_selected='//div[contains(@class,"sc-fqkvVR gwppKx")]/div/div/div/div/div[2]/div[2]/div/div[contains(@class,"sc-fqkvVR jQywWX")]/div/div/div/div/ul/li[3]'
-tab_selector='//div[contains(@class,"sc-fqkvVR cfBWxi")]/div[2]/div[text()="By Round"]'
-
+X_Path_season_selected='//div[contains(@class,"dqPXrj")]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div/div/ul/li[3]'
+tab_selector='//div[contains(@class,"Box hIovvg")]/div[2]/div[text()="By Round"]'
+X_Path_round_match_selected="//div[contains(@class,'list-wrapper')]/div[1]/div/div/div/div/ul/li[2]"
+X_Path_round_match_click="//div[contains(@class,'list-wrapper')]/div[1]/div/button"
 
 
 
@@ -167,7 +180,15 @@ by_Round=WebDriverWait(driver, 4000).until(
                         EC.presence_of_element_located((By.XPATH,tab_selector))
                         )
 print(by_Round.text)
+driver.implicitly_wait(5)
 
+
+# #specially for Mexico league
+# Action_Round_match_click=WebDriverWait(driver, 4000).until(
+#                         EC.presence_of_element_located((By.XPATH,X_Path_round_match_selected))
+#                         )
+# Action_Round_match_click.click()
+# ###
 data_url=WebDriverWait(driver, 1000).until(
                        EC.presence_of_all_elements_located((By.XPATH,X_Path_data_url ))
                        )
@@ -291,7 +312,7 @@ while next_url:
 
         
         round_match=WebDriverWait(driver, 10).until(
-                                    EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[1]/div/button/div/span'))
+                                    EC.presence_of_element_located((By.XPATH,'//div[contains(@class,"list-wrapper")]/div[1]/div/button/div/div'))
                                     )
         
         for i in range(len(data)):
@@ -353,12 +374,14 @@ for event in results:
     event["match_id"]=rep.get("match_id"),
     event["tournament_nameapi"]=rep.get("tournament_nameapi"),
     event["api_detail_url"]=rep.get("api_detail_url"),
+    event["HomeGoal"]=rep.get('homescore'),
+    event["AwayGoal"]=rep.get('awayscore')
 
 print(results)
 
 with open(output_file, 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
-                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])
+                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url','HomeGoal','AwayGoal'])
     writer.writeheader()
     writer.writerows(results)
