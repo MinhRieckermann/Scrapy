@@ -1,0 +1,1032 @@
+{
+    "incidents": [
+        {
+            "text": "FT",
+            "homeScore": 2,
+            "awayScore": 4,
+            "isLive": false,
+            "time": 88,
+            "addedTime": 999,
+            "reversedPeriodTime": 1,
+            "incidentType": "period"
+        },
+        {
+            "player": {
+                "name": "Nick Pope",
+                "firstName": "",
+                "lastName": "",
+                "slug": "nick-pope",
+                "shortName": "N. Pope",
+                "position": "G",
+                "jerseyNumber": "22",
+                "userCount": 3814,
+                "id": 162653,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0628\u0648\u0628, \u0646\u064a\u0643"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0646. \u0628\u0648\u0628"
+                    }
+                }
+            },
+            "playerName": "Nick Pope",
+            "reason": "Argument",
+            "rescinded": true,
+            "id": 121350530,
+            "time": 85,
+            "addedTime": 5,
+            "isHome": false,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 1,
+            "incidentType": "card"
+        },
+        {
+            "player": {
+                "name": "Neal Maupay",
+                "slug": "neal-maupay",
+                "shortName": "N. Maupay",
+                "position": "F",
+                "jerseyNumber": "7",
+                "userCount": 1835,
+                "id": 268903,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0648\u0628\u0627\u064a, \u0646\u064a\u0627\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0646. \u0645\u0648\u0628\u0627\u064a"
+                    }
+                }
+            },
+            "playerName": "Neal Maupay",
+            "reason": "Foul",
+            "rescinded": false,
+            "id": 121350507,
+            "time": 87,
+            "addedTime": 5,
+            "isHome": false,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 1,
+            "incidentType": "card"
+        },
+        {
+            "playerIn": {
+                "name": "Paul Dummett",
+                "firstName": "",
+                "lastName": "",
+                "slug": "paul-dummett",
+                "shortName": "P. Dummett",
+                "position": "D",
+                "jerseyNumber": "3",
+                "userCount": 331,
+                "id": 185995,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062f\u0648\u0645\u064a\u062a, \u0628\u0648\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0628. \u062f\u0648\u0645\u064a\u062a"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Fabian Sch\u00e4r",
+                "firstName": "",
+                "lastName": "",
+                "slug": "fabian-schar",
+                "shortName": "F. Sch\u00e4r",
+                "position": "D",
+                "jerseyNumber": "5",
+                "userCount": 2516,
+                "id": 101882,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0634\u0627\u0631, \u0641\u0627\u0628\u064a\u0627\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0641. \u0634\u0627\u0631"
+                    }
+                }
+            },
+            "id": 122721495,
+            "time": 97,
+            "addedTime": 2,
+            "injury": false,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 1,
+            "incidentType": "substitution"
+        },
+        {
+            "length": 7,
+            "time": 99,
+            "addedTime": 0,
+            "reversedPeriodTime": 1,
+            "incidentType": "injuryTime"
+        },
+        {
+            "playerIn": {
+                "name": "Yehor Yarmoliuk",
+                "firstName": "",
+                "lastName": "",
+                "slug": "yarmoliuk-yehor",
+                "shortName": "Y. Yarmoliuk",
+                "position": "M",
+                "jerseyNumber": "33",
+                "userCount": 1263,
+                "id": 1031258
+            },
+            "playerOut": {
+                "name": "Yoane Wissa",
+                "slug": "yoane-wissa",
+                "shortName": "Y. Wissa",
+                "position": "F",
+                "jerseyNumber": "11",
+                "userCount": 5656,
+                "id": 805123,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u064a\u0648\u064a\u0646 \u0648\u064a\u0635\u0627"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u064a. \u0648\u064a\u0635\u0627"
+                    }
+                }
+            },
+            "id": 122721360,
+            "time": 78,
+            "injury": false,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 7,
+            "incidentType": "substitution"
+        },
+        {
+            "playerIn": {
+                "name": "Callum Wilson",
+                "firstName": "",
+                "lastName": "",
+                "slug": "callum-wilson",
+                "shortName": "C. Wilson",
+                "position": "F",
+                "jerseyNumber": "9",
+                "userCount": 4752,
+                "id": 113956,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0648\u064a\u0644\u0633\u0648\u0646, \u0643\u0627\u0644\u0648\u0645"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0643. \u0648\u064a\u0644\u0633\u0648\u0646"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Alexander Isak",
+                "firstName": "",
+                "lastName": "",
+                "slug": "alexander-isak",
+                "shortName": "A. Isak",
+                "position": "F",
+                "jerseyNumber": "14",
+                "userCount": 18975,
+                "id": 823941,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u064a\u0632\u0627\u0643, \u0623\u0644\u0643\u0633\u0646\u062f\u0631"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0623. \u0625\u064a\u0632\u0627\u0643"
+                    }
+                }
+            },
+            "id": 122721335,
+            "time": 81,
+            "injury": true,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 10,
+            "incidentType": "substitution"
+        },
+        {
+            "playerIn": {
+                "name": "Kieran Trippier",
+                "firstName": "",
+                "lastName": "",
+                "slug": "kieran-trippier",
+                "shortName": "K. Trippier",
+                "position": "D",
+                "jerseyNumber": "2",
+                "userCount": 12234,
+                "id": 69256,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062a\u0631\u0627\u0628\u064a\u064a\u0631, \u0643\u064a\u0631\u0627\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0643. \u062a\u0631\u0627\u0628\u064a\u064a\u0631"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Joelinton",
+                "firstName": "",
+                "lastName": "",
+                "slug": "joelinton",
+                "shortName": "Joelinton",
+                "position": "M",
+                "jerseyNumber": "7",
+                "userCount": 5910,
+                "id": 560128,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062c\u0648\u0644\u064a\u0646\u062a\u0648\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062c\u0648\u0644\u064a\u0646\u062a\u0648\u0646"
+                    }
+                }
+            },
+            "id": 122721334,
+            "time": 90,
+            "injury": true,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 10,
+            "incidentType": "substitution"
+        },
+        {
+            "homeScore": 2,
+            "awayScore": 4,
+            "player": {
+                "name": "Bruno Guimar\u00e3es",
+                "slug": "bruno-guimaraes",
+                "shortName": "B. Guimar\u00e3es",
+                "position": "M",
+                "jerseyNumber": "39",
+                "userCount": 22781,
+                "id": 866469,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u063a\u064a\u0645\u0627\u0631\u064a\u0634 \u060c \u0628\u0631\u0648\u0646\u0648"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u063a. \u060c \u0628\u0631\u0648\u0646\u0648"
+                    }
+                }
+            },
+            "id": 182517212,
+            "time": 81,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 14,
+            "incidentType": "goal"
+        },
+        {
+            "confirmed": true,
+            "player": {
+                "name": "Lewis Hall",
+                "firstName": "Lewis Hall",
+                "slug": "lewis-hall",
+                "shortName": "L. Hall",
+                "position": "D",
+                "jerseyNumber": "20",
+                "userCount": 3107,
+                "id": 1136730,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0644\u0648\u064a\u0633 \u0647\u0627\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0644. \u0647\u0627\u0644"
+                    }
+                }
+            },
+            "isHome": false,
+            "id": 25977,
+            "time": 70,
+            "incidentClass": "penaltyAwarded",
+            "reversedPeriodTime": 15,
+            "incidentType": "varDecision"
+        },
+        {
+            "playerIn": {
+                "name": "Neal Maupay",
+                "slug": "neal-maupay",
+                "shortName": "N. Maupay",
+                "position": "F",
+                "jerseyNumber": "7",
+                "userCount": 1835,
+                "id": 268903,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0648\u0628\u0627\u064a, \u0646\u064a\u0627\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0646. \u0645\u0648\u0628\u0627\u064a"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Sergio Reguil\u00f3n",
+                "firstName": "",
+                "lastName": "",
+                "slug": "sergio-reguilon",
+                "shortName": "S. Reguil\u00f3n",
+                "position": "D",
+                "jerseyNumber": "12",
+                "userCount": 4567,
+                "id": 858195,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0631\u064a\u062c\u064a\u0644\u0648\u0646, \u0633\u064a\u0631\u062c\u0648"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0633. \u0631\u064a\u062c\u064a\u0644\u0648\u0646"
+                    }
+                }
+            },
+            "id": 122721259,
+            "time": 75,
+            "injury": false,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 17,
+            "incidentType": "substitution"
+        },
+        {
+            "playerIn": {
+                "name": "Kevin Schade",
+                "firstName": "",
+                "lastName": "",
+                "slug": "kevin-schade",
+                "shortName": "K. Schade",
+                "position": "F",
+                "jerseyNumber": "9",
+                "userCount": 1154,
+                "id": 1006387,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0643\u064a\u0641\u0646 \u0634\u0627\u062f\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0643. \u0634\u0627\u062f\u064a"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Vitaly Janelt",
+                "slug": "vitaly-janelt",
+                "shortName": "V. Janelt",
+                "position": "M",
+                "jerseyNumber": "27",
+                "userCount": 725,
+                "id": 814873,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062c\u0627\u0646\u064a\u0644\u062a \u060c \u0641\u064a\u062a\u0627\u0644\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062c. \u060c \u0641\u064a\u062a\u0627\u0644\u064a"
+                    }
+                }
+            },
+            "id": 122721258,
+            "time": 71,
+            "injury": true,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 17,
+            "incidentType": "substitution"
+        },
+        {
+            "homeScore": 2,
+            "awayScore": 3,
+            "player": {
+                "name": "Yoane Wissa",
+                "slug": "yoane-wissa",
+                "shortName": "Y. Wissa",
+                "position": "F",
+                "jerseyNumber": "11",
+                "userCount": 5656,
+                "id": 805123,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u064a\u0648\u064a\u0646 \u0648\u064a\u0635\u0627"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u064a. \u0648\u064a\u0635\u0627"
+                    }
+                }
+            },
+            "assist1": {
+                "name": "Ivan Toney",
+                "firstName": "",
+                "lastName": "",
+                "slug": "ivan-toney",
+                "shortName": "I. Toney",
+                "position": "F",
+                "jerseyNumber": "17",
+                "userCount": 10685,
+                "id": 290927,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u064a\u0641\u0627\u0646 \u062a\u0648\u0646\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0625. \u062a\u0648\u0646\u064a"
+                    }
+                }
+            },
+            "id": 182516899,
+            "time": 67,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 21,
+            "incidentType": "goal"
+        },
+        {
+            "playerIn": {
+                "name": "Elliot Anderson",
+                "firstName": "",
+                "lastName": "",
+                "slug": "elliot-anderson",
+                "shortName": "E. Anderson",
+                "position": "M",
+                "jerseyNumber": "32",
+                "userCount": 907,
+                "id": 994546,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u0644\u064a\u0648\u062a \u0623\u0646\u062f\u0631\u0633\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0625. \u0623\u0646\u062f\u0631\u0633\u0646"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Harvey Barnes",
+                "firstName": "",
+                "lastName": "",
+                "slug": "harvey-barnes",
+                "shortName": "H. Barnes",
+                "position": "M",
+                "jerseyNumber": "15",
+                "userCount": 3369,
+                "id": 855647,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0628\u0627\u0631\u0646\u0632, \u0647\u0627\u0631\u0641\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0647. \u0628\u0627\u0631\u0646\u0632"
+                    }
+                }
+            },
+            "id": 122721180,
+            "time": 60,
+            "injury": false,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 23,
+            "incidentType": "substitution"
+        },
+        {
+            "playerIn": {
+                "name": "Miguel Almir\u00f3n",
+                "firstName": "",
+                "lastName": "",
+                "slug": "miguel-almiron",
+                "shortName": "M. Almir\u00f3n",
+                "position": "F",
+                "jerseyNumber": "24",
+                "userCount": 8189,
+                "id": 333373,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0622\u0644\u0645\u064a\u0631\u0648\u0646, \u0645\u064a\u063a\u064a\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0645. \u0622\u0644\u0645\u064a\u0631\u0648\u0646"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Jacob Murphy",
+                "slug": "jacob-murphy",
+                "shortName": "J. Murphy",
+                "position": "F",
+                "jerseyNumber": "23",
+                "userCount": 1320,
+                "id": 372336,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0648\u0631\u0641\u064a, \u062c\u0627\u0643\u0648\u0628"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062c. \u0645\u0648\u0631\u0641\u064a"
+                    }
+                }
+            },
+            "id": 122721179,
+            "time": 77,
+            "injury": true,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 23,
+            "incidentType": "substitution"
+        },
+        {
+            "player": {
+                "name": "Emil Krafth",
+                "firstName": "",
+                "lastName": "",
+                "slug": "emil-krafth",
+                "shortName": "E. Krafth",
+                "position": "D",
+                "jerseyNumber": "17",
+                "userCount": 596,
+                "id": 150396,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0643\u0631\u0627\u0641\u062a, \u0625\u0645\u064a\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0625. \u0643\u0631\u0627\u0641\u062a"
+                    }
+                }
+            },
+            "playerName": "Emil Krafth",
+            "reason": "Foul",
+            "rescinded": false,
+            "id": 121350330,
+            "time": 72,
+            "isHome": true,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 25,
+            "incidentType": "card"
+        },
+        {
+            "playerIn": {
+                "name": "Mikkel Damsgaard",
+                "slug": "damsgaard-mikkel",
+                "shortName": "M. Damsgaard",
+                "position": "M",
+                "jerseyNumber": "24",
+                "userCount": 2940,
+                "id": 907072,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062f\u0627\u0645\u0633\u062c\u0627\u0631\u062f \u060c \u0645\u064a\u0643\u064a\u0644"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062f. \u060c \u0645\u064a\u0643\u064a\u0644"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Mathias Jensen",
+                "slug": "mathias-jensen",
+                "shortName": "M. Jensen",
+                "position": "M",
+                "jerseyNumber": "8",
+                "userCount": 1308,
+                "id": 799251,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0627\u062a\u064a\u0627\u0633 \u062c\u0646\u0633\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0645. \u062c\u0646\u0633\u0646"
+                    }
+                }
+            },
+            "id": 122721124,
+            "time": 61,
+            "injury": false,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 27,
+            "incidentType": "substitution"
+        },
+        {
+            "playerIn": {
+                "name": "Saman Ghoddos",
+                "firstName": "",
+                "lastName": "",
+                "slug": "saman-ghoddos",
+                "shortName": "S. Ghoddos",
+                "position": "M",
+                "jerseyNumber": "14",
+                "userCount": 3333,
+                "id": 548050,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0633\u0645\u0639\u0627\u0646 \u0642\u062f\u0648\u0633"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0633. \u0642\u062f\u0648\u0633"
+                    }
+                }
+            },
+            "playerOut": {
+                "name": "Mads Roerslev",
+                "slug": "mads-roerslev",
+                "shortName": "M. Roerslev",
+                "position": "M",
+                "jerseyNumber": "30",
+                "userCount": 497,
+                "id": 826057,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0627\u062f\u0633 \u0631\u0648\u064a\u0631\u0633\u0644\u064a\u0641"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0645. \u0631\u0648\u064a\u0631\u0633\u0644\u064a\u0641"
+                    }
+                }
+            },
+            "id": 122721123,
+            "time": 56,
+            "injury": false,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 28,
+            "incidentType": "substitution"
+        },
+        {
+            "player": {
+                "name": "Dan Burn",
+                "slug": "dan-burn",
+                "shortName": "D. Burn",
+                "position": "D",
+                "jerseyNumber": "33",
+                "userCount": 1846,
+                "id": 99090,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0628\u0648\u0631\u0646, \u062f\u0627\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062f. \u0628\u0648\u0631\u0646"
+                    }
+                }
+            },
+            "playerName": "Dan Burn",
+            "reason": "Foul",
+            "rescinded": false,
+            "id": 121350277,
+            "time": 61,
+            "isHome": true,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 38,
+            "incidentType": "card"
+        },
+        {
+            "player": {
+                "name": "Yoane Wissa",
+                "slug": "yoane-wissa",
+                "shortName": "Y. Wissa",
+                "position": "F",
+                "jerseyNumber": "11",
+                "userCount": 5656,
+                "id": 805123,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u064a\u0648\u064a\u0646 \u0648\u064a\u0635\u0627"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u064a. \u0648\u064a\u0635\u0627"
+                    }
+                }
+            },
+            "playerName": "Yoane Wissa",
+            "reason": "Simulation",
+            "rescinded": true,
+            "id": 121350271,
+            "time": 49,
+            "isHome": false,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 40,
+            "incidentType": "card"
+        },
+        {
+            "homeScore": 1,
+            "awayScore": 3,
+            "player": {
+                "name": "Vitaly Janelt",
+                "slug": "vitaly-janelt",
+                "shortName": "V. Janelt",
+                "position": "M",
+                "jerseyNumber": "27",
+                "userCount": 725,
+                "id": 814873,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062c\u0627\u0646\u064a\u0644\u062a \u060c \u0641\u064a\u062a\u0627\u0644\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062c. \u060c \u0641\u064a\u062a\u0627\u0644\u064a"
+                    }
+                }
+            },
+            "assist1": {
+                "name": "Yoane Wissa",
+                "slug": "yoane-wissa",
+                "shortName": "Y. Wissa",
+                "position": "F",
+                "jerseyNumber": "11",
+                "userCount": 5656,
+                "id": 805123,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u064a\u0648\u064a\u0646 \u0648\u064a\u0635\u0627"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u064a. \u0648\u064a\u0635\u0627"
+                    }
+                }
+            },
+            "id": 182515746,
+            "time": 48,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 43,
+            "incidentType": "goal"
+        },
+        {
+            "text": "HT",
+            "homeScore": 0,
+            "awayScore": 3,
+            "isLive": true,
+            "time": 46,
+            "addedTime": 999,
+            "reversedPeriodTime": 1,
+            "incidentType": "period"
+        },
+        {
+            "player": {
+                "name": "Mathias Jensen",
+                "slug": "mathias-jensen",
+                "shortName": "M. Jensen",
+                "position": "M",
+                "jerseyNumber": "8",
+                "userCount": 1308,
+                "id": 799251,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0627\u062a\u064a\u0627\u0633 \u062c\u0646\u0633\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0645. \u062c\u0646\u0633\u0646"
+                    }
+                }
+            },
+            "playerName": "Mathias Jensen",
+            "reason": "Foul",
+            "rescinded": true,
+            "id": 121350182,
+            "time": 42,
+            "addedTime": 5,
+            "isHome": true,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 1,
+            "incidentType": "card"
+        },
+        {
+            "length": 5,
+            "time": 54,
+            "addedTime": 0,
+            "reversedPeriodTime": 1,
+            "incidentType": "injuryTime"
+        },
+        {
+            "player": {
+                "name": "Ivan Toney",
+                "firstName": "",
+                "lastName": "",
+                "slug": "ivan-toney",
+                "shortName": "I. Toney",
+                "position": "F",
+                "jerseyNumber": "17",
+                "userCount": 10685,
+                "id": 290927,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u064a\u0641\u0627\u0646 \u062a\u0648\u0646\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0625. \u062a\u0648\u0646\u064a"
+                    }
+                }
+            },
+            "playerName": "Ivan Toney",
+            "reason": "Foul",
+            "rescinded": false,
+            "id": 121350149,
+            "time": 53,
+            "isHome": false,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 2,
+            "incidentType": "card"
+        },
+        {
+            "homeScore": 0,
+            "awayScore": 3,
+            "player": {
+                "name": "Alexander Isak",
+                "firstName": "",
+                "lastName": "",
+                "slug": "alexander-isak",
+                "shortName": "A. Isak",
+                "position": "F",
+                "jerseyNumber": "14",
+                "userCount": 18975,
+                "id": 823941,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u064a\u0632\u0627\u0643, \u0623\u0644\u0643\u0633\u0646\u062f\u0631"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0623. \u0625\u064a\u0632\u0627\u0643"
+                    }
+                }
+            },
+            "assist1": {
+                "name": "Bruno Guimar\u00e3es",
+                "slug": "bruno-guimaraes",
+                "shortName": "B. Guimar\u00e3es",
+                "position": "M",
+                "jerseyNumber": "39",
+                "userCount": 22781,
+                "id": 866469,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u063a\u064a\u0645\u0627\u0631\u064a\u0634 \u060c \u0628\u0631\u0648\u0646\u0648"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u063a. \u060c \u0628\u0631\u0648\u0646\u0648"
+                    }
+                }
+            },
+            "id": 182514341,
+            "time": 37,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 8,
+            "incidentType": "goal"
+        },
+        {
+            "homeScore": 0,
+            "awayScore": 2,
+            "player": {
+                "name": "Jacob Murphy",
+                "slug": "jacob-murphy",
+                "shortName": "J. Murphy",
+                "position": "F",
+                "jerseyNumber": "23",
+                "userCount": 1320,
+                "id": 372336,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0645\u0648\u0631\u0641\u064a, \u062c\u0627\u0643\u0648\u0628"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062c. \u0645\u0648\u0631\u0641\u064a"
+                    }
+                }
+            },
+            "assist1": {
+                "name": "Alexander Isak",
+                "firstName": "",
+                "lastName": "",
+                "slug": "alexander-isak",
+                "shortName": "A. Isak",
+                "position": "F",
+                "jerseyNumber": "14",
+                "userCount": 18975,
+                "id": 823941,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u064a\u0632\u0627\u0643, \u0623\u0644\u0643\u0633\u0646\u062f\u0631"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0623. \u0625\u064a\u0632\u0627\u0643"
+                    }
+                }
+            },
+            "id": 182514251,
+            "time": 34,
+            "isHome": true,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 10,
+            "incidentType": "goal"
+        },
+        {
+            "player": {
+                "name": "Joelinton",
+                "firstName": "",
+                "lastName": "",
+                "slug": "joelinton",
+                "shortName": "Joelinton",
+                "position": "M",
+                "jerseyNumber": "7",
+                "userCount": 5910,
+                "id": 560128,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u062c\u0648\u0644\u064a\u0646\u062a\u0648\u0646"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u062c\u0648\u0644\u064a\u0646\u062a\u0648\u0646"
+                    }
+                }
+            },
+            "playerName": "Joelinton",
+            "reason": "Foul",
+            "rescinded": false,
+            "id": 121350073,
+            "time": 32,
+            "isHome": false,
+            "incidentClass": "yellow",
+            "reversedPeriodTime": 18,
+            "incidentType": "card"
+        },
+        {
+            "homeScore": 0,
+            "awayScore": 1,
+            "player": {
+                "name": "Harvey Barnes",
+                "firstName": "",
+                "lastName": "",
+                "slug": "harvey-barnes",
+                "shortName": "H. Barnes",
+                "position": "M",
+                "jerseyNumber": "15",
+                "userCount": 3369,
+                "id": 855647,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0628\u0627\u0631\u0646\u0632, \u0647\u0627\u0631\u0641\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0647. \u0628\u0627\u0631\u0646\u0632"
+                    }
+                }
+            },
+            "assist1": {
+                "name": "Bruno Guimar\u00e3es",
+                "slug": "bruno-guimaraes",
+                "shortName": "B. Guimar\u00e3es",
+                "position": "M",
+                "jerseyNumber": "39",
+                "userCount": 22781,
+                "id": 866469,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u063a\u064a\u0645\u0627\u0631\u064a\u0634 \u060c \u0628\u0631\u0648\u0646\u0648"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u063a. \u060c \u0628\u0631\u0648\u0646\u0648"
+                    }
+                }
+            },
+            "id": 182513670,
+            "time": 14,
+            "isHome": false,
+            "incidentClass": "regular",
+            "reversedPeriodTime": 25,
+            "incidentType": "goal"
+        },
+        {
+            "confirmed": true,
+            "player": {
+                "name": "Ivan Toney",
+                "firstName": "",
+                "lastName": "",
+                "slug": "ivan-toney",
+                "shortName": "I. Toney",
+                "position": "F",
+                "jerseyNumber": "17",
+                "userCount": 10685,
+                "id": 290927,
+                "fieldTranslations": {
+                    "nameTranslation": {
+                        "ar": "\u0625\u064a\u0641\u0627\u0646 \u062a\u0648\u0646\u064a"
+                    },
+                    "shortNameTranslation": {
+                        "ar": "\u0625. \u062a\u0648\u0646\u064a"
+                    }
+                }
+            },
+            "isHome": false,
+            "id": 25967,
+            "time": 4,
+            "incidentClass": "goalAwarded",
+            "reversedPeriodTime": 42,
+            "incidentType": "varDecision"
+        }
+    ]
+}

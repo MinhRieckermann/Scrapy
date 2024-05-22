@@ -14,7 +14,8 @@ import urllib.parse
 import urllib.request
 import requests
 import json
-
+import httpx
+import urllib3
 #---------------------------------------------------------------------------------------------
 def h2hevent(url,headers,tournament):
     req = requests.get(url,headers=headers)
@@ -82,9 +83,11 @@ def h2hevent(url,headers,tournament):
     return data_result
     
 def incidentevent(url,headers):
-    req = urllib.request.Request(url,headers=headers)
-    data=urllib.request.urlopen(req).read().decode('utf-8')
-    raw_data=json.loads(data)
+    # req = urllib.request.Request(url,headers=headers)
+    # data=urllib.request.urlopen(req).read().decode('utf-8')
+    data=requests.get(url,headers=headers)
+    raw_data=json.loads(data.content)
+    
         
     TimeAwayScrore=''
     TimeHomeScrore=''
@@ -92,48 +95,79 @@ def incidentevent(url,headers):
     HTResult=''
     homescore=''
     awayscore=''
-    if "incidents" in raw_data:
+    if raw_data!='':
+        if "incidents" in raw_data:
 
-        for dt in raw_data['incidents']:
-            if dt['incidentType']=="period":
-                if dt['text']=="FT":
-                        FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
-                        homescore=int(dt['homeScore'])
-                        awayscore=int(dt['awayScore'])
-                if dt['text']=="HT":
-                        HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
-            if dt['incidentType']=="goal":
-                if dt['isHome']==False:
-                        TimeAwayScrore=TimeAwayScrore+str(dt['time'])+";"
-                if dt['isHome']==True:
-                        TimeHomeScrore=TimeHomeScrore+str(dt['time'])+";"
-                        # item['HTResult']=
-                        # item['HomeScores']=
-                        # item['AwayScores']=
-                        # item['TimeAwayScrore']=
-                        # item['TimeHomeScrore']=
-                        # item['DetailScore']=
-                        # item['Hometeam']=
-                        # item['Awayteam']=
-                        # item['country']=
-                        # item['tournament']=
-                        # item['season']=
-        data_result={
-            'FTResult':FTResult,
-            'HTResult':HTResult,
-            'TimeAwayScrore':TimeAwayScrore,
-            'TimeHomeScrore':TimeHomeScrore,
-            'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore,
-            'HomeScore':homescore,
-            'AwayScore':awayscore
-        }    
+            for dt in raw_data['incidents']:
+                if dt['incidentType']=="period":
+                    if dt['text']=="FT":
+                            FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
+                            homescore=int(dt['homeScore'])
+                            awayscore=int(dt['awayScore'])
+                    if dt['text']=="HT":
+                            HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
+                if dt['incidentType']=="goal":
+                    if dt['isHome']==False:
+                            TimeAwayScrore=TimeAwayScrore+str(dt['time'])+";"
+                    if dt['isHome']==True:
+                            TimeHomeScrore=TimeHomeScrore+str(dt['time'])+";"
+                            # item['HTResult']=
+                            # item['HomeScores']=
+                            # item['AwayScores']=
+                            # item['TimeAwayScrore']=
+                            # item['TimeHomeScrore']=
+                            # item['DetailScore']=
+                            # item['Hometeam']=
+                            # item['Awayteam']=
+                            # item['country']=
+                            # item['tournament']=
+                            # item['season']=
+            data_result={
+                'FTResult':FTResult,
+                'HTResult':HTResult,
+                'TimeAwayScrore':TimeAwayScrore,
+                'TimeHomeScrore':TimeHomeScrore,
+                'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore,
+                'HomeScore':homescore,
+                'AwayScore':awayscore
+            }    
+            
         
-    
 
-        return data_result
+            return data_result
+        else:
+            return ''
     else:
-        return ''
+          data_result={
+                'FTResult':'no found',
+                'HTResult':'no found',
+                'TimeAwayScrore':'no found',
+                'TimeHomeScrore':'no found',
+                'DetailScore':'no found',
+                'HomeScore':'no found',
+                'AwayScore':'no found'
+            }
+    return data_result
         
+def send_request(url, headers=None):
+    try:
+        # Prepare the request with optional headers
+        req = urllib.request.Request(url, headers=headers)
+        
+        # Open the URL
+        with urllib.request.urlopen(req) as response:
+            # Read the response data
+            data = response.read()
+            # If data is None, set it to an empty byte string
+            if data is None:
+                data = b''
+            # Decode the response data assuming it's UTF-8
+            decoded_data = data.decode('utf-8')
+            # Print the decoded response
+            #print(decoded_data)
+        return  decoded_data
+    except urllib.error.URLError as e:
+        print("Error:", e)       
 
         
 
@@ -146,10 +180,10 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/england/premier-league/17#id:52186')
+driver.get('https://www.sofascore.com/tournament/football/denmark/superliga/39#id:52172')
 results = []
 
-output_file='football_PremierLeague20232024data.csv'
+output_file='football_denmark2023_data.csv'
 
 X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
 X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'
@@ -166,7 +200,7 @@ X_Path_next_url='//div[contains(@class,"list-wrapper")]/div[1]/button[1]'
 
 X_Path_season_selected='//div[contains(@class,"dqPXrj")]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div/div/ul/li[3]'
 tab_selector='//div[contains(@class,"Box hIovvg")]/div[2]/div[text()="By Round"]'
-X_Path_round_match_selected="//div[contains(@class,'list-wrapper')]/div[1]/div/div/div/div/ul/li[2]"
+X_Path_round_match_selected="//div[contains(@class,'list-wrapper')]/div[1]/div/div/div/div/ul/li[34]"
 X_Path_round_match_click="//div[contains(@class,'list-wrapper')]/div[1]/div/button"
 
 

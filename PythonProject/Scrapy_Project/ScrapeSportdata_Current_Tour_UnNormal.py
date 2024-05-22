@@ -28,9 +28,9 @@ def h2hevent(url,headers,tournament):
     Awayteam=''
     match_id=''
     tournamentapi=''
-    #A-League ,Brasileir\u00e3o S\u00e9rie A,Divisi\u00f3n de Honor, Apertura,J.League,K-League 1
+    #A-League ,Brasileir\u00e3o S\u00e9rie A,Divisi\u00f3n de Honor, Apertura,J.League,K-League 1,Copa Libertadores
     for i in range(len(raw_data['events'])):
-        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Brasileir\u00e3o S\u00e9rie A'):
+        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Divisi\u00f3n de Honor, Apertura'):
             # tournament=raw_data['events'][i]['tournament']['name']
             # country=raw_data['events'][i]['tournament']['category']['name']
             # roundInfo=raw_data['events'][i]['roundInfo']['round']
@@ -60,7 +60,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':res.get("DetailScore"),
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':res.get("HomeScore"),
+            'awayscore':res.get("AwayScore")
         }
     else:
         data_result={
@@ -71,7 +73,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':'link error',
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':'link error',
+            'awayscore':'link error'
         }
 
 
@@ -86,15 +90,21 @@ def incidentevent(url,headers):
     TimeHomeScrore=''
     FTResult=''
     HTResult=''
+    DetailScore=''
+    homescore=''
+    awayscore=''
     if "incidents" in raw_data:
 
         for dt in raw_data['incidents']:
             if dt['incidentType']=="period":
                 if dt['text']=="FT":
                         FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
+                        homescore=int(dt['homeScore'])
+                        awayscore=int(dt['awayScore'])
                 if dt['text']=="HT":
                         HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
             if dt['incidentType']=="goal":
+                DetailScore=DetailScore+str(dt['time'])+";"
                 if dt['isHome']==False:
                         TimeAwayScrore=TimeAwayScrore+str(dt['time'])+";"
                 if dt['isHome']==True:
@@ -115,7 +125,9 @@ def incidentevent(url,headers):
             'HTResult':HTResult,
             'TimeAwayScrore':TimeAwayScrore,
             'TimeHomeScrore':TimeHomeScrore,
-            'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore
+            'DetailScore':DetailScore,
+            'HomeScore':homescore,
+            'AwayScore':awayscore
         }    
         
     
@@ -136,10 +148,10 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/brazil/brasileirao-serie-a/325#id:58766')
+driver.get('https://www.sofascore.com/tournament/football/paraguay/primera-division-apertura/11540#id:57264')
 results = []
 
-output_file='football_BrazilSerieA_2024_data.csv'
+output_file='football_paraguay_apertura_2024.csv'
 
 X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
 X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'
@@ -368,12 +380,13 @@ for event in results:
     event["match_id"]=rep.get("match_id"),
     event["tournament_nameapi"]=rep.get("tournament_nameapi"),
     event["api_detail_url"]=rep.get("api_detail_url"),
-
+    event["HomeGoal"]=rep.get('homescore'),
+    event["AwayGoal"]=rep.get('awayscore')
 print(results)
 
 with open(output_file, 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
-                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])
+                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url','HomeGoal','AwayGoal'])
     writer.writeheader()
     writer.writerows(results)
