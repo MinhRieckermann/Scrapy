@@ -14,7 +14,8 @@ import urllib.parse
 import urllib.request
 import requests
 import json
-
+import urllib3
+import httpx
 #---------------------------------------------------------------------------------------------
 def h2hevent(url,headers,tournament):
     req = requests.get(url,headers=headers)
@@ -84,6 +85,7 @@ def h2hevent(url,headers,tournament):
 def incidentevent(url,headers):
     # req = urllib.request.Request(url,headers=headers)
     # data=urllib.request.urlopen(req).read().decode('utf-8')
+    #data=requests.get(url,headers=headers)
     data=send_request(url,headers)
     if data !=None:
         raw_data=json.loads(data)
@@ -100,14 +102,19 @@ def incidentevent(url,headers):
         if "incidents" in raw_data:
 
             for dt in raw_data['incidents']:
+                scoreHome=''
+                scoreAway=''
                 if dt['incidentType']=="period":
                     if dt['text']=="FT":
                             FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
                             homescore=int(dt['homeScore'])
                             awayscore=int(dt['awayScore'])
+                            scoreHome=dt['homeScore']
+                            scoreAway=dt['awayScore']
                     if dt['text']=="HT":
                             HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
                 if dt['incidentType']=="goal":
+                    
                     if dt['isHome']==False:
                             TimeAwayScrore=TimeAwayScrore+str(dt['time'])+";"
                     if dt['isHome']==True:
@@ -151,36 +158,57 @@ def incidentevent(url,headers):
             }
     return data_result
 
-def send_request(url, headers=None):
-    try:
-        # Prepare the request with optional headers
-        req = urllib.request.Request(url, headers=headers)
-        
-        # Open the URL
-        with urllib.request.urlopen(req) as response:
-            # Read the response data
-            data = response.read()
-            # If data is None, set it to an empty byte string
-            if data is None:
-                data = b''
-            # Decode the response data assuming it's UTF-8
-            decoded_data = data.decode('utf-8')
-            # Print the decoded response
-            print(decoded_data)
-    except urllib.error.URLError as e:
-        print("Error:", e)       
+def send_request(url, headers=None, output_filename='response.json'):
+    # Postman User-Agent string
+    postman_user_agent = 'PostmanRuntime/7.39.0'
 
+    # If no headers provided, initialize an empty dictionary
+    if headers is None:
+        headers = {}
+
+    # Add the User-Agent to the headers
+    headers['User-Agent'] = postman_user_agent
+
+    try:
+        # Make a GET request with headers
+        response = httpx.get(url, headers=headers)
+        
+        # Raise an exception if the request was unsuccessful
+        response.raise_for_status()
+        
+        # Read and decode the response data
+        decoded_data = response.text
+        
+        # Print the decoded response
+        print(decoded_data)
+        
+        # Save the decoded data as a JSON file
+        try:
+            json_data = json.loads(decoded_data)
+            with open(output_filename, 'w') as json_file:
+                json.dump(json_data, json_file, indent=4)
+            print(f"Data saved to {output_filename}")
+        except json.JSONDecodeError as json_err:
+            print("Failed to decode JSON:", json_err)
+        
+        return decoded_data
+    except httpx.HTTPStatusError as http_err:
+        print("HTTP error occurred:", http_err)
+    except httpx.RequestError as req_err:
+        print("Request error occurred:", req_err)
+    except Exception as err:
+        print("An error occurred:", err)
 
 
 #----------------------------------------------------------------------------------------------
-chrome_options=Options()
+#chrome_options=Options()
 #chrome_options.add_argument("--headless")
-chrome_path=which("chromedriver")
-driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
+# chrome_path=which("chromedriver")
+# driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/102.0.0.0 Safari/537.36'}
-api_event_url='https://api.sofascore.com/api/v1/event/683397/incidents'
+headers = {'User-Agent':'PostmanRuntime/7.39.0'}
+api_event_url='https://www.sofascore.com/api/v1/event/11352549/incidents'
 rep=incidentevent(api_event_url,headers)
 if rep !='':
 

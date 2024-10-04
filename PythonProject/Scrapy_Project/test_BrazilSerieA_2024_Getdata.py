@@ -60,7 +60,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':res.get("DetailScore"),
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':res.get("HomeScore"),
+            'awayscore':res.get("AwayScore")
         }
     else:
         data_result={
@@ -71,7 +73,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':'link error',
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':'link error',
+            'awayscore':'link error'
         }
 
 
@@ -88,6 +92,9 @@ def incidentevent(url,headers):
     TimeHomeScrore=''
     FTResult=''
     HTResult=''
+    DetailScore=''
+    homescore=''
+    awayscore=''
     if raw_data!='':
         if "incidents" in raw_data:
 
@@ -95,9 +102,12 @@ def incidentevent(url,headers):
                 if dt['incidentType']=="period":
                     if dt['text']=="FT":
                             FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
+                            homescore=int(dt['homeScore'])
+                            awayscore=int(dt['awayScore'])
                     if dt['text']=="HT":
                             HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
                 if dt['incidentType']=="goal":
+                    DetailScore=DetailScore+str(dt['time'])+";"
                     if dt['isHome']==False:
                             TimeAwayScrore=TimeAwayScrore+str(dt['time'])+";"
                     if dt['isHome']==True:
@@ -118,7 +128,10 @@ def incidentevent(url,headers):
                 'HTResult':HTResult,
                 'TimeAwayScrore':TimeAwayScrore,
                 'TimeHomeScrore':TimeHomeScrore,
-                'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore
+                'DetailScore':DetailScore,
+                
+                'HomeScore':homescore,
+                'AwayScore':awayscore
             }    
             
         

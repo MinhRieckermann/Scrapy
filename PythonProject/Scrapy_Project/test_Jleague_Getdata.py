@@ -14,7 +14,7 @@ import urllib.parse
 import urllib.request
 import requests
 import json
-
+import httpx
 #---------------------------------------------------------------------------------------------
 def h2hevent(url,headers,tournament):
     req = requests.get(url,headers=headers)
@@ -60,7 +60,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':res.get("DetailScore"),
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':res.get("HomeScore"),
+            'awayscore':res.get("AwayScore")
         }
     else:
         data_result={
@@ -71,7 +73,9 @@ def h2hevent(url,headers,tournament):
             'DetailScore':'link error',
             'match_id':match_id,
             'tournament_nameapi':tournamentapi,
-            'api_detail_url':detail_url
+            'api_detail_url':detail_url,
+            'homescore':'link error',
+            'awayscore':'link error'
         }
 
 
@@ -79,6 +83,8 @@ def h2hevent(url,headers,tournament):
     
 def incidentevent(url,headers):
     data=send_request(url,headers)
+    #data=requests.get(url,headers=headers)
+    #raw_data=json.loads(data)
     if data !=None:
         raw_data=json.loads(data)
     else:
@@ -86,8 +92,11 @@ def incidentevent(url,headers):
         
     TimeAwayScrore=''
     TimeHomeScrore=''
+    DetailScore=''
     FTResult=''
     HTResult=''
+    homescore=''
+    awayscore=''
     if raw_data!='':
         if "incidents" in raw_data:
 
@@ -95,9 +104,12 @@ def incidentevent(url,headers):
                 if dt['incidentType']=="period":
                     if dt['text']=="FT":
                             FTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
+                            homescore=int(dt['homeScore'])
+                            awayscore=int(dt['awayScore'])
                     if dt['text']=="HT":
                             HTResult=str(dt['homeScore'])+"-"+str(dt['awayScore'])
                 if dt['incidentType']=="goal":
+                    DetailScore=DetailScore+str(dt['time'])+";"
                     if dt['isHome']==False:
                             TimeAwayScrore=TimeAwayScrore+str(dt['time'])+";"
                     if dt['isHome']==True:
@@ -118,7 +130,9 @@ def incidentevent(url,headers):
                 'HTResult':HTResult,
                 'TimeAwayScrore':TimeAwayScrore,
                 'TimeHomeScrore':TimeHomeScrore,
-                'DetailScore':TimeHomeScrore+"-"+TimeAwayScrore
+                'DetailScore':DetailScore,
+                'HomeScore':homescore,
+                'AwayScore':awayscore
             }    
             
         
@@ -386,7 +400,7 @@ driver.close()
 #     writer.writeheader()
 #     writer.writerows(results)
 #--------------------------------
-headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/101.0.0.0 Safari/537.36'}
+headers = {'User-Agent':'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36'}
 api_event_url='https://api.sofascore.com/api/v1/event/{0}/h2h/events'
 for event in results:
     event["api_event_url"]=api_event_url.format(event.get("code"))
@@ -402,12 +416,14 @@ for event in results:
     event["match_id"]=rep.get("match_id"),
     event["tournament_nameapi"]=rep.get("tournament_nameapi"),
     event["api_detail_url"]=rep.get("api_detail_url"),
-
+    
+    event["HomeGoal"]=rep.get('homescore'),
+    event["AwayGoal"]=rep.get('awayscore')
 print(results)
 
 with open(output_file, 'w', newline='', encoding='utf-8-sig') as f:
     writer = csv.DictWriter(f,
                             fieldnames=['country', 'tournament', 'year', 'hometeam', 'awayteam', 'time_match','status_match', 'round_match', 'detail_url','code','api_event_url',
-                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url'])
+                                        'FTResult','HTResult','TimeAwayScrore','TimeHomeScrore','DetailScore','match_id','tournament_nameapi','api_detail_url','HomeGoal','AwayGoal'])
     writer.writeheader()
     writer.writerows(results)
