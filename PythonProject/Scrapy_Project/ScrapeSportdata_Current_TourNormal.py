@@ -151,25 +151,17 @@ def incidentevent(url,headers):
         
 def send_request(url, headers=None):
     try:
-        # Prepare the request with optional headers
-        req = urllib.request.Request(url, headers=headers)
-        
-        # Open the URL
-        with urllib.request.urlopen(req) as response:
-            # Read the response data
-            data = response.read()
-            # If data is None, set it to an empty byte string
-            if data is None:
-                data = b''
-            # Decode the response data assuming it's UTF-8
-            decoded_data = data.decode('utf-8')
-            # Print the decoded response
-            #print(decoded_data)
-        return  decoded_data
-    except urllib.error.URLError as e:
-        print("Error:", e)       
-
-        
+        # Create a PoolManager instance
+        http = urllib3.PoolManager()
+        # Send the HTTP request
+        response = http.request('GET', url, headers=headers)
+        # Decode the response data assuming it's UTF-8
+        decoded_data = response.data.decode('utf-8')
+        # Print the decoded response
+        #print(decoded_data)
+        return decoded_data
+    except urllib3.exceptions.HTTPError as e:
+        print("Error:", e)
 
 
 
@@ -180,26 +172,26 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/denmark/superliga/39#id:52172')
+driver.get('https://www.sofascore.com/tournament/football/netherlands/eredivisie/37#id:61666')
 results = []
 
-output_file='football_denmark2023_data.csv'
+output_file='football_netherlands_data2024_2025.csv'
 
-X_Path_hometeam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
-X_Path_awayteam='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'
+X_Path_hometeam='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"TabPanel bpHovE")]/div/div/div[1]/div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
+X_Path_awayteam='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"TabPanel bpHovE")]/div/div/div[1]/div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'
 
-X_Path_time_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/bdi'
-X_Path_status_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/div/span[1]/bdi'
-X_Path_country="//div[contains(@class,'dqPXrj')]/div/div[2]/div[2]/div[1]/div[contains(@class,'jLRkRA')]/span/text()[2]"
-X_Path_tournament="//div[contains(@class,'dqPXrj')]/div/div[2]/div[2]/h2/text()"
-X_Path_year="//div[contains(@class,'dqPXrj')]/div/div[2]/div[2]/div[1]/div[2]/div/div/button/div/div/text()"
+X_Path_time_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/bdi'
+X_Path_status_match='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[2]/div/span[1]/bdi'
+X_Path_country="//div[contains(@class,'jLRkRA')]/span/text()[2]"
+X_Path_tournament="//div[contains(@class,'Box Flex cCCWtl ijPrqM')]/div[2]/div/div/div//h2/text()[1]"
+X_Path_year="//div[contains(@class,'Box Flex cCCWtl ijPrqM')]/div[2]/div/div/div[2]/div/div/div/div/button/div/div/text()"
 X_Path_round_match="//div[contains(@class,'list-wrapper')]/div[1]/div/button/div/div/text()"
 X_Path_round_match_notext='//div[contains(@class,"list-wrapper")]/div[1]/div/button/div/div'
-X_Path_data_url='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box eUcumg")]/a'
+X_Path_data_url='//div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a'
 X_Path_next_url='//div[contains(@class,"list-wrapper")]/div[1]/button[1]'
 
 X_Path_season_selected='//div[contains(@class,"dqPXrj")]/div/div[2]/div[2]/div[1]/div[2]/div/div/div/div/div/ul/li[3]'
-tab_selector='//div[contains(@class,"Box hIovvg")]/div[2]/div[text()="By Round"]'
+tab_selector='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"Box biPAua")]/div[text()="By round"]'
 X_Path_round_match_selected="//div[contains(@class,'list-wrapper')]/div[1]/div/div/div/div/ul/li[34]"
 X_Path_round_match_click="//div[contains(@class,'list-wrapper')]/div[1]/div/button"
 
