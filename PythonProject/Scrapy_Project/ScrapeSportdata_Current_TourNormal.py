@@ -172,10 +172,11 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/netherlands/eredivisie/37#id:61666')
+driver.get('https://www.sofascore.com/tournament/football/sweden/allsvenskan/40#id:57284')
+driver.maximize_window()
 results = []
 
-output_file='football_netherlands_data2024_2025.csv'
+output_file='football_sweden_data2024.csv'
 
 X_Path_hometeam='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"TabPanel bpHovE")]/div/div/div[1]/div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
 X_Path_awayteam='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"TabPanel bpHovE")]/div/div/div[1]/div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'

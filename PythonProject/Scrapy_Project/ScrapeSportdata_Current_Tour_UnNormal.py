@@ -29,14 +29,15 @@ def h2hevent(url,headers,tournament):
     match_id=''
     tournamentapi=''
     #A-League ,Brasileir\u00e3o S\u00e9rie A,Divisi\u00f3n de Honor, Apertura,
-    # J.League,K-League 1,Copa Libertadores,Primera Divisi\u00f3n, Clausura,First Division A,,Costa rica Primera Divisi\u00f3n, Apertura
+    # J.League,K-League 1,Copa Libertadores,Primera Divisi\u00f3n, Clausura,First Division A,,
+    # Costa rica :Primera Divisi\u00f3n, Apertura
     # Denmark Superligaen
-    # Germany :Bundesliga
+    # Germany :Bundesliga,2. Bundesliga
     # Italy : Serie A
     # England : Premier League
     # Spain : laliga
     for i in range(len(raw_data['events'])):
-        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('Serie A'):
+        if raw_data['events'][i]['status']['type']=="finished" and raw_data['events'][i]['tournament']['name'].startswith('2. Bundesliga'):
             # tournament=raw_data['events'][i]['tournament']['name']
             # country=raw_data['events'][i]['tournament']['category']['name']
             # roundInfo=raw_data['events'][i]['roundInfo']['round']
@@ -180,10 +181,11 @@ chrome_path=which("chromedriver")
 driver=webdriver.Chrome(executable_path=chrome_path,options=chrome_options)
 
 
-driver.get('https://www.sofascore.com/tournament/football/italy/serie-a/23#id:63515')
+driver.get('https://www.sofascore.com/tournament/football/germany/2-bundesliga/44#id:63514')
+driver.maximize_window()
 results = []
 
-output_file='football_italyserieA_data20242025.csv'
+output_file='football_Germany_2Bundesliga_2024_data.csv'
 
 X_Path_hometeam='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"TabPanel bpHovE")]/div/div/div[1]/div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[1]'
 X_Path_awayteam='//div[contains(@class,"Box Flex ggRYVx cQgcrM sc-91097bb0-1 fnWzsl")]/div[1]/div[5]/div/div[contains(@class,"TabPanel bpHovE")]/div/div/div[1]/div[contains(@class,"list-wrapper")]/div[contains(@class,"Box iJYHJb")]/a/div/div[contains(@class,"js-list-cell-target")]/div[4]/div[contains(@class,"jLRkRA")]/div[contains(@title,"live score")]/div[2]'
